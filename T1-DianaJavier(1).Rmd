@@ -1,0 +1,140 @@
+---
+title: "Tarea 1. Programa en R"
+author: "Diana Laura Javier Garcia"
+date: "9/9/2020"
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+ This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>. 
+
+
+<!-- When you click the **Knit** button a document will be generated that includes  both content as well as the output of any embedded R code chunks within the #  document. You can embed an R code chunk like this:  -->
+
+<!-- # ```{r cars} -->
+<!-- # summary(cars) -->
+<!-- # ``` -->
+
+<!-- ## Including Plots -->
+
+<!-- You can also embed plots, for example: -->
+
+<!-- ```{r pressure, echo=FALSE} -->
+<!-- plot(pressure) -->
+<!-- ``` -->
+
+<!-- Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. -->
+
+El objetivo de esta tarea es analizar los parámetros estadísticos de un grupo de datos ordenados en los campos, o variables, consumo, cilindrada (CC), potencia (CV), peso y aceleración. 
+
+
+Para elegir el par de variables de estudio al azar se generó un procedimiento en Excel el cual se explica en el documento anexo. De acuerdo con el procedimiento descrito se eligieron las variables consumo y aceleración.  
+
+El código en R comienza con la lectura de los datos. 
+
+```{r}
+autos<-read.table("autos.txt",header = T)
+attach(autos)
+```
+
+# Parámetros estadísticos de la variable aceleración 
+
+Para obtener el histograma se emplea el siguiente código: 
+
+```{r}
+hist(Acel, main = "Histograma de la variable aceleración", ylab = "Frecuencia", xlab = "Aceleración", labels = TRUE)
+```
+
+Mientras que para obtener el diagrama de caja se empleó la instrucción:
+
+```{r}
+boxplot(Acel, main ="Diagrama de caja de la variable aceleración", xlab = "Aceleración", labels = TRUE)
+```
+
+
+Además, el programa nos permite conocer el resumen de los parámetros estadísticos con el siguiente código. 
+
+```{r}
+summary(Acel)
+```
+
+# Parámetros estadísticos de la variable peso 
+
+En esta sección se muestra el histograma de la variable peso, el cual se obtuvo con la siguiente instrucción:
+
+```{r}
+hist(Peso, main = "Histograma de la variable peso", ylab = "Frecuencia", xlab = "Peso", labels = TRUE)
+```
+ 
+Por otra parte, se muestra el diagrama de caja de la variable peso, el cual se obtuvo con la siguiente instrucción:
+
+```{r}
+boxplot(Peso, main = "Diagrama de caja de la variable peso", xlab = "Peso", labels = TRUE)
+```
+
+Además, el programa nos permite conocer el resumen de los parámetros estadísticos con el siguiente código. 
+
+```{r}
+summary(Peso)
+```
+
+Finalmente, se muestra el resumen de todas las variables:
+
+```{r}
+summary(autos)
+```
+
+
+# Análisis de resultados
+
+En la sección anterior se presentó el histograma y el diagrama de caja de las variables aceleración y peso. Con base en ello y en el resumen de datos se realizan las siguientes observaciones:
+
+Aceleración:
+
+
+  1.- La aceleración tiene un promedio de $15.67\frac{km}{s}$. 
+  
+  
+  2.- El primer y tercer cuartil tienen valores de 14 y 17, por lo tanto la diferencias de estos (conocido como rango intercuartílico) permite mostrar que los datos no presentan una dispersión importante. 
+  
+  3.- El diagrama de caja (bigotes) muestra que el valor mínimo y máximo de la aceleración es 8 y 25, por ello estos valores extremos deben ser investigados con importancia, ya que pueden aportar información importante. 
+  
+  4.- El primer cuartil indica que el primer $25\%$ de los datos se encuentran entre 8 y 14. Mientras que el $50\%$ de los datos se encuentran entre el valor mínimo de 8 y la mediana con valor de 16. Asimismo, el tercer cuartil que separa al $75\%$ de los datos ordenados de mayor a menor se encuentran entre 8 y 17.
+  
+  5.- El histograma de la variable aceleración tiene una moda, con una distribución simétrica, es decir, presenta una distribución normal. 
+  
+
+Peso
+
+  1.- Con base en los resultados presentados, se encontró que el peso promedio de los autos estudiados es de 990.6 kg.
+  
+  2.- A partir del diagrama de caja se observa que existe una dispersión importante en los datos, sobre todo si se considera que el valor máximo (1713.0) se encuentra alejado de la mediana (935). 
+
+  3.- El primer cuartil indica que el primer $25\%$ de los datos se encuentran entre 537.0  y 742.0. Mientras que el $50\%$ de los datos se encuentran entre el valor mínimo de 537.0 y la mediana con valor de 935.0. Asimismo, el tercer cuartil que separa al $75\%$ de los datos ordenados de mayor a menor se encuentran entre 537 y 1203.0.
+  
+  4.- Con respecto a la distribución de los datos por frencuencias, se observa que los datos con mayor frencuencia se encuentran entre 600 y 1000, donde el intervalo entre 700 y 800 presenta la mayor frencuencia. 
+  
+  5.- Se observa además, que la distribución de los datos por intervalos tiene una moda, y presenta una distribución sesgada a la izquierda. 
+
+
+# Conclusiones
+
+En este trabajo se lograron los objetivos establecidos. El programa R permitió realizar un análisis estadístico  de los datos de aceleración y peso de varios autos. El análisis de los parámetros estadisticos (media, moda, mediana, primer cuartil, segundo cuartil, mínimo y máximo) así como del histograma y diagrama de caja permiten concluir lo siguiente: 
+
+  Con respecto a los datos de aceleración se observó que presentan una distribución simétrica (normal), donde el promedio  tiene un valor de $15.67\frac{km}{s}$. Debido a que la diferencia entre el tercer y primer cuartil tiene un valor de 3, se considera que los datos no presentan una dispersión importante. 
+  
+  Por otra parte, con respecto a los datos de peso se observó que estos presentan una distribución sesgada a la izquierda, lo cual sugiere que la mayoria de los autos estudiados tienen un peso bajo (menor a 1000 kg). Sin embargo, el diagrama de caja permitió mostrar que existen valores extremos comparados con la media, lo cual se puede observar gráficamente en los bigotes del diagrama. 
+  
+De manera general, se observaron datos extremos, por ello es importante tomar en cuenta estos valores, ya que pueden aportar información relevante o bien, pueden ser mediciones erroneas. 
+
+  
+  
+  
